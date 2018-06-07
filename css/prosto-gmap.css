@@ -1,0 +1,63 @@
+/* .prosto-gmap-iw-box {
+	-webkit-transition: all 0.3s linear 0s;
+	-moz-transition: all 0.3s linear 0s;
+	-o-transition: all 0.3s linear 0s;
+	transition: all 0.3s linear 0s;
+} */
+.prosto-gmap-iw-box > div:first-child > div:first-child{
+	border-top: 0 !important;
+}
+.prosto-gmap-iw-box > div:first-child > div:nth-child(2){/*тень за основной плашкой*/
+	opacity: 0;
+}
+.prosto-gmap-iw-box > div:first-child > div:nth-child(3) > div > div {/*тень за стрелкой*/
+	box-shadow: none !important;
+	height: 15px !important;
+	background-color: #29AD00 !important;
+}
+.prosto-gmap-iw-box > div:first-child > div:nth-child(3) > div {
+	height: 15px !important;
+}
+.prosto-gmap-iw-box > div:first-child > div:nth-child(3) > div:nth-child(1) > div {/*тень за стрелкой*/
+    -moz-transform: skewX(40deg) !important; /* Для Firefox */
+    -ms-transform: skewX(40deg) !important; /* Для IE */
+    -webkit-transform: skewX(40deg) !important; /* Для Safari, Chrome, iOS */
+    -o-transform: skewX(40deg) !important; /* Для Opera */
+	transform: skewX(40deg) !important;
+}
+.prosto-gmap-iw-box > div:first-child > div:nth-child(3) > div:nth-child(2) > div {/*тень за стрелкой*/
+    -moz-transform: skewX(-40deg) !important; /* Для Firefox */
+    -ms-transform: skewX(-40deg) !important; /* Для IE */
+    -webkit-transform: skewX(-40deg) !important; /* Для Safari, Chrome, iOS */
+    -o-transform: skewX(-40deg) !important; /* Для Opera */
+	transform: skewX(-40deg) !important;
+}
+.prosto-gmap-iw-box > div:first-child > div:nth-child(4) { /*белая плашка под текстом*/
+	border-radius: 20px !important;
+	background-color: #29AD00 !important;
+	background: linear-gradient(to top, #29AD00, #3ed50f);
+}
+
+#order_map .gm-style > .gmnoprint,
+#order_map .gm-style > .gm-style-cc {
+	opacity: 0;
+}
+
+
+#order_map .gm-style-iw{
+	text-align: center;
+	color: white;
+	font-weight: 600;
+}
+.iw-rayon-name {
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#order_map .gm-style-iw + div {
+	opacity: 0;
+}
+#order_map .prosto-gmap-iw-box .gm-style-iw + div {
+	display: none;
+}

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Цены</title>
+				<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta name="cmsmagazine" content="963390b3134afa3d288633b7219528b8" />
+		<link rel="stylesheet" href="css/prosto.css" />
+		<link href="img/prosto-icon.ico" rel="icon" type="image/x-icon" />   
+		
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="js/jquery.maskedinput.js"></script>
+		<script src="js/prosto-func.js"></script>
+		<script type="text/javascript" src="js/jquery.localstorage.js"></script>
+
+        <!-- <script src="/js/swiper/swiper.jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/js/swiper/swiper.min.css"> -->
+		
+		<link rel="stylesheet" type="text/css" href="js/lightbox2/css/lightbox.css">
+		<script src="js/lightbox2/js/lightbox.js"></script>
+		
+		<!-- <script src="/js/OkpWidget.js"></script> -->
+		<script src="js/prosto-all-pages.js"></script>
+		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-67282802-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>		
+		<script src="js/prosto-price.js"></script>
+	</head>
+	<body>
+		<div class="width-control width-control-outer"><!-- ВНЕШНИЙ КОНТЕЙНЕР ШИРИНЫ -->
+		
+		
+						<header>
+				<!-- НАД МЕНЮ -->
+				<div id="header_top">
+					<a href="index.html" id="head_logo" class="header-logo"><img src="img/prosto-logo.png"></a>
+					<a href="price.php.html#" id="head_callback" class="callback-link round-border" onclick="window.location.href='#ck_callback_button';">перезвоните мне</a>
+					<a href="zakaz.php.html" id="head_lead" class="show-href-link round-border">заказать по лучшей цене</a>
+									</div>
+				<!-- /над меню -->
+				
+				<!-- МЕНЮ -->
+				<div id="header_menu_box">
+					<div class="full-width">
+						<ul id="main_menu" class="menu menu-main width-control">
+							<li><a href="deshevle/index.html" title="Действительно дешевле, чем у конкурентов">Почему у нас дешевле?</a></li>
+							<li><a href="prod.php.html" title="Собственное производство">Производство</a></li>
+							<li><a href="price.php.html" title="Цены">Цены</a></li>
+							<li><a href="calc/index.html" title="Онлайн калькулятор окон">Калькулятор окон</a></li>
+							<li><a href="okna.php.html" title="Качество наших окон">Качество окон</a></li>
+							<li><a href="contact.php.html" title="Контакты">Контакты</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /меню -->
+				
+				<!-- Калькуляторная линия -->
+				<script>
+
+function plural_str(i, str1, str2, str3){
+  function plural (a){
+    if ( a % 10 == 1 && a % 100 != 11 ) return 0
+    else if ( a % 10 >= 2 && a % 10 <= 4 && ( a % 100 < 10 || a % 100 >= 20)) return 1
+    else return 2;
+  }
+  switch (plural(i)) {
+    case 0: return str1;
+    case 1: return str2;
+    default: return str3;
+  }
+}
+
+$(document).on('ready',function(){
+	var calc_storage = $.localStorage;
+	var calc_price = calc_storage.get('calc_price');
+	console.log(calc_price);
+	
+	if(!calc_storage.isEmpty('calc_win_array')){
+				
+		$('.win_price_window:not(:first-child)').remove();
+		
+		var win_counter=0;
+		
+		calc_storage.get('calc_win_array').forEach(function(item, i, arr) {
+			if(i>=0)win_counter++;
+		});
+		
+		$('.calc_line_windows').text();
+	}
+	
+	if(calc_price>0 && win_counter>0){
+		$('.calc_line_windows').html('Вы рассчитали в <a href="/calc/">калькуляторе</a> - <span>'+(win_counter+' '+plural_str(win_counter,'окно','окна','окон'))+'</span> стоимостью <span class="calc_line_price_value">'+(calc_price).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1 ")+$('.calc_line_windows').text()+'</span> ');
+		$('.calc_line').css('display','block');
+	}
+});
+</script>
+
+<div class='calc_line' style='display:none;'>
+	<div>
+		<div class="full-width">
+		<div class="calc_line_line width-control">
+			<div class='calc_line_header'><img src='img/calculator_icon_24.png'></div>
+			<div class='calc_line_windows'> <span class="replace-rub-sym">руб.</span></div>
+			<div class='calc_line_buttons'>
+				<a href="zakaz.php.html" class="show-href-link round-border calc_line_widget" onclick="window.location.href='#ck_callback_metering';">вызвать замерщика</a>
+			</div>
+		</div>
+		</div>
+		
+	</div>
+</div>
+				<!-- /Калькуляторная линия -->
+							
+			</header>			
+			
+			<div class="node node-page"> <!-- ОБЁРТКА НОДЫ -->
+				
+				<!-- СТОИМОСТЬ ОДНОКОМНАТНОЙ КВАРТИРЫ -->
+				<div id="price_example_1k" class="price-example-block">
+					<h2 class="heading-font small-heading" id="price_example_h2_1k">Сэкономьте <span class="green-color"><strong>22 300</strong> <span class="replace-rub-sym">руб.</span></span> <span id="price_example_h2_words_1k">на остеклении однокомнатной квартиры "под ключ"</span></h2>
+					
+					<div class="price-example-win-box" id="price_example_win_box_1k">
+						
+						<div class="win-bg-prof-box win-prlx-bal-box" id="price_ex_win_bal_1k" style="opacity: 0;">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-2.jpg" style="left: -770px;" data-prlxstart="-770" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-bal-rev-trn.png" />
+						</div>
+						
+						<div class="win-bg-prof-box win-prlx-3-box win-lighting" id="price_ex_win_2_1k" style="opacity: 0;">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-2.jpg" style="left: -940px; top: 10px;" data-prlxstart="-940" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-3-trn.png" />
+						</div>
+						
+						<div id="win_capt_bal_1k" class="price-example-win-caption" style="opacity: 0;">
+							Балконный блок<br><span class="win-capt-dimens">Размер 2210х2200 мм</span>
+						</div>
+						<div id="win_capt_2_1k" class="price-example-win-caption" style="opacity: 0;">
+							Трёхстворчатое окно<br><span class="win-capt-dimens">Размер 1880х1410 мм</span>
+						</div>
+					</div>
+					
+					<div class="price-example-summ-box" id="price_summ_box_1k">
+						<img class="price-example-summ-img" id="summ_img_1k" src="img/price-ex-summ-x-long.png" />
+						<p class="comm-price heading-font normal-heading" id="dealer_price_box_1k">
+							<span id="dealer_price_text_1k" class="comm-price-text">Цена от посредников:</span><br>
+							<span class="cross-out-clip" id="summ_del_dealer_pr_1k"><img src="img/cross-out.png" /></span>
+							<span id="dealer_price_1k" class="comm-price-summ">59 700 <span class="replace-rub-sym">руб.</span></span>
+						</p>
+						<p class="prosto-price heading-font medium-heading" id="our_price_box_1k">
+							<span id="our_price_text_1k" class="prosto-price-text">Наша цена:</span><br>
+							<span id="our_price_1k" class="prosto-price-summ green-color">
+								<span id="prosto_our_price_20200" data-count-from="59700" data-count-till="37400" class="prosto-our-price">37 400</span>
+								<span class="replace-rub-sym">руб.</span>
+							</span>
+						</p>
+						<div class="price-example-economy-words" id="economy_phrase_1k">
+							На сэкономленные деньги<br>
+							<span id="economy_phrase_words_1k">Вы могли бы приобрести:</span>
+						</div>
+						
+						<div class="price-example-economy-slides-box" id="economy_slides_box_1k">
+							<!--
+							<div class="price-example-economy-slide">
+								<h3 class="price-example-economy-slide-title">УЖИН В ЯПОНСКОМ РЕСТОРАНЕ</h3> 
+								<img class="price-example-economy-slide-img" src="/img/price-econom-sushi.jpg" />
+							</div> -->
+							<!--
+							<div class="price-example-economy-slide">
+								<h3 class="price-example-economy-slide-title">СЕАНС СПА-ПРОЦЕДУР<h3>
+								<img class="price-example-economy-slide-img" src="/img/price-econom-spa.jpg" />
+							</div> -->
+							<div class="price-example-economy-slide slide-active">
+								<h3 class="price-example-economy-slide-title">МОДНЫЕ ТУФЛИ<h3>
+								<img class="price-example-economy-slide-img" src="img/price-econom-tufli.jpg" />
+							</div>
+						</div>
+						
+						<a class="round-border round-border-big round-border-green zakaz-title-replace" data-zakaz-phrase="остекление однокомнатной квартиры" id="order_btn_1k" href="zakaz.php.html">заказать с выгодой</a>
+						<img class="price-example-summ-arrow" src="img/green-right-arrow-sm-cur.png" />
+					</div>
+					<img src="img/green-bot-arrow.png" id="price_1k_animate_bott" class="animate-bottom-arrow"/>
+				</div>
+				<!-- /стоимость однокомнатной квартиры -->
+				
+				
+				<!-- СТОИМОСТЬ ДВУХКОМНАТНОЙ КВАРТИРЫ -->
+				<div id="price_example_2k" style="opacity: 0;" class="price-example-block top-bott-bordered">
+					<h2 class="heading-font small-heading">Сэкономьте <span class="green-color"><strong>30 900</strong> <span class="replace-rub-sym">руб.</span></span> на остеклении двухкомнатной квартиры "под ключ"</h2>
+					<div class="price-example-win-box">
+						<div class="win-bg-prof-box win-prlx-bal-box">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-3.jpg" style="left: -770px;" data-prlxstart="-770" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-bal-rev-trn.png" />
+						</div>
+						
+						<div class="win-bg-prof-box win-prlx-3-box win-lighting">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-3.jpg" style="left: -370px;" data-prlxstart="-370" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-3-trn.png" />
+						</div>
+							
+						<div class="win-bg-prof-box win-prlx-3-box win-lighting" id="price_ex_win_2_2k">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-3.jpg" style="left: -940px;" data-prlxstart="-940" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-3-trn.png" />
+						</div>
+						
+						<div id="win_capt_bal_2k" class="price-example-win-caption">
+							Балконный блок <span class="win-capt-dimens">Размер 2210х2200 мм</span>
+						</div>
+						<div id="win_capt_3_2k" class="price-example-win-caption">
+							Трёхстворчатое окно<br><span class="win-capt-dimens">Размер 1880х1410 мм</span>
+						</div>
+						<div id="win_capt_2_2k" class="price-example-win-caption">
+							Трёхстворчатое окно<br><span class="win-capt-dimens">Размер 1880х1410 мм</span>
+						</div>
+					</div>
+					
+					<div class="price-example-summ-box">
+						<img class="price-example-summ-img" src="img/price-ex-summ-x-long.png" />
+						<p class="comm-price heading-font normal-heading">
+							<span class="comm-price-text">Цена от посредников:</span><br>
+							<span class="cross-out-clip"><img src="img/cross-out.png" /></span> 
+							<span class="comm-price-summ">82 500 <span class="replace-rub-sym">руб.</span></span>
+						</p>
+						<p class="prosto-price heading-font medium-heading">
+							<span class="prosto-price-text">Наша цена:</span><br>
+							<span class="prosto-price-summ green-color">
+								<span id="prosto_our_price_25500" data-count-from="82500" data-count-till="51600" class="prosto-our-price">51 600</span>
+								<span class="replace-rub-sym">руб.</span>
+							</span>
+						</p>
+						
+						<div class="price-example-economy-words" id="economy_phrase_1k">
+							На сэкономленные деньги<br>
+							<span>Вы могли бы приобрести:</span>
+						</div>
+						
+						<div class="price-example-economy-slides-box">
+							<!-- <div class="price-example-economy-slide">
+								<h3 class="price-example-economy-slide-title">УЖИН В ЯПОНСКОМ РЕСТОРАНЕ</h3> 
+								<img class="price-example-economy-slide-img" src="/img/price-econom-sushi.jpg" />
+							</div>
+							<div class="price-example-economy-slide">
+								<h3 class="price-example-economy-slide-title">СЕАНС СПА-ПРОЦЕДУР<h3>
+								<img class="price-example-economy-slide-img" src="/img/price-econom-spa.jpg" />
+							</div> -->
+							<div class="price-example-economy-slide slide-active">
+								<h3 class="price-example-economy-slide-title">ИГРОВУЮ КОНСОЛЬ<h3>
+								<img class="price-example-economy-slide-img" src="img/price-econom-game.jpg" />
+							</div>
+						</div>
+						
+						<a class="round-border round-border-big round-border-green zakaz-title-replace" data-zakaz-phrase="остекление двухкомнатной квартиры" href="zakaz.php.html">заказать с выгодой</a>
+						<img class="price-example-summ-arrow" src="img/green-right-arrow-sm-cur.png" />
+					</div>
+				</div>
+				<!-- /стоимость двухкомнатной квартиры -->
+				<script>prepare1kAimation()</script>
+				
+				<!-- СТОИМОСТЬ ТРЁХКОМНАТНОЙ КВАРТИРЫ -->
+				<div id="price_example_3k" class="price-example-block top-bott-bordered">
+					<h2 class="heading-font small-heading">Сэкономьте <span class="green-color"><strong>45 600</strong> <span class="replace-rub-sym">руб.</span></span> на остеклении трёхкомнатной квартиры "под ключ"</h2>
+					<div class="price-example-win-box">
+						<div class="win-bg-prof-box win-prlx-bal-box">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-1.jpg" style="left: -770px;" data-prlxstart="-770" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-bal-rev-trn.png" />
+						</div>
+						
+						<div id="pr_exmp_3k_3_1" class="win-bg-prof-box win-prlx-3-box win-lighting">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-1.jpg" style="left: -370px;" data-prlxstart="-370" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-3-trn.png" />
+						</div>
+						
+						<div id="pr_exmp_3k_3_2"  class="win-bg-prof-box win-prlx-3-box win-lighting">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-1.jpg" style="left: -370px;" data-prlxstart="-370" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-3-trn.png" />
+						</div>
+							
+						<div class="win-bg-prof-box win-prlx-2-box win-lighting">
+							<div class="win-prlx-bg-clip">
+								<img src="img/prlx-bg-1.jpg" style="left: -940px;" data-prlxstart="-940" class="win-prlx-bg"/>
+							</div>
+							<img src="img/okno-2-trn.png" />
+						</div>
+						
+						<div id="win_capt_bal_3k" class="price-example-win-caption">
+							Балконный блок <span class="win-capt-dimens">Размер 2210х2200 мм</span>
+						</div>
+						<div id="win_capt_3_3k" class="price-example-win-caption">
+							Трёхстворчатое окно <span class="green-color">2 шт.</span><br><span class="win-capt-dimens">Размер 1880х1410 мм</span>
+						</div>
+						<div id="win_capt_2_3k" class="price-example-win-caption">
+							Двухстворчатое окно<br><span class="win-capt-dimens">Размер 1330х1410 мм</span>
+						</div>
+					</div>
+					
+					<div class="price-example-summ-box">
+						<img class="price-example-summ-img" src="img/price-ex-summ-x-long.png" />
+						<p class="comm-price heading-font normal-heading">
+							<span class="comm-price-text">Цена от посредников:</span><br>
+							<span class="cross-out-clip"><img src="img/cross-out.png" /></span>
+							<span class="comm-price-summ">107 800 <span class="replace-rub-sym">руб.</span></span>
+						</p>
+						<p class="prosto-price heading-font medium-heading">
+							<span class="prosto-price-text">Наша цена:</span><br>
+							<span class="prosto-price-summ green-color">
+								<span id="prosto_our_price_32000" data-count-from="107800" data-count-till="62200" class="prosto-our-price">62 200</span>
+								<span class="replace-rub-sym">руб.</span>
+							</span>
+						</p>
+						
+						<div class="price-example-economy-words" id="economy_phrase_1k">
+							На сэкономленные деньги<br>
+							<span>Вы могли бы приобрести:</span>
+						</div>
+						
+						<div class="price-example-economy-slides-box">
+							<!--
+							<div class="price-example-economy-slide">
+								<h3 class="price-example-economy-slide-title">УЖИН В ЯПОНСКОМ РЕСТОРАНЕ</h3> 
+								<img class="price-example-economy-slide-img" src="/img/price-econom-sushi.jpg" />
+							</div>
+							<div class="price-example-economy-slide">
+								<h3 class="price-example-economy-slide-title">СЕАНС СПА-ПРОЦЕДУР<h3>
+								<img class="price-example-economy-slide-img" src="/img/price-econom-spa.jpg" />
+							</div> -->
+							<div class="price-example-economy-slide slide-active">
+								<h3 class="price-example-economy-slide-title">УИКЕНД НА МОРЕ<h3>
+								<img class="price-example-economy-slide-img" src="img/price-econom-more.jpg" />
+							</div>
+						</div>
+						
+						<a class="round-border round-border-big round-border-green zakaz-title-replace" data-zakaz-phrase="остекление трёхкомнатной квартиры" href="zakaz.php.html">заказать с выгодой</a>
+						<img class="price-example-summ-arrow" src="img/green-right-arrow-sm-cur.png" />
+					</div>
+				</div>
+				<!-- /стоимость трёхкомнатной квартиры -->
+				
+				<!-- НАШИ ЦЕНЫ НА ПЛАСТИКОВЫЕ ОКНА PRLX-->
+				<div id="price_page_block">
+					<div id="win_container">
+						
+						<div id="win_1" class="win-box win-box-prlx">
+							<div class="win-heading-box">
+								<p class="win-heading win-heading-normal heading-font normal-heading">Стоимость двухстворчатого окна</p>
+								<p class="win-mes">Размер 1330 х 1410 мм</p>
+							</div>
+							
+							<div class="win-bg-prof-box win-prlx-2-box">
+								<div class="win-prlx-bg-clip">
+									<img src="img/win-bg.jpg" style="left: -110px;" data-prlxstart="-110" class="win-prlx-bg"/>
+								</div>
+								<img src="img/okno-2-trn.png" />
+							</div>
+						
+							<div class="price-box common-price-box">
+								<p class="comm-price heading-font medium-heading">
+									<span class="cross-out-clip"><img src="img/cross-out.png" /></span>
+									11 700 <span class="replace-rub-sym">руб.</span>
+								</p>
+							</div>
+							<div class="price-box prosto-price-box">
+								<p class="prosto-price heading-font medium-heading">
+									<span id="prosto_our_price_5500" data-count-from="11700" data-count-till="7000" class="prosto-our-price green-color">7 000</span> <span class="replace-rub-sym green-color">руб.</span>
+								</p>
+							</div>
+							<p class="win-price-block-economy">Экономия <span class="green-color">4 700 <span class="replace-rub-sym">руб.</span></span></p>
+							<a class="round-border round-border-green win-price-order-btn" href="zakaz.php.html">заказать с выгодой</a>
+						</div>
+						
+						
+						
+						
+						
+						<div id="win_2" class="win-box win-box-prlx">
+							
+							<div class="win-heading-box">
+								<p class="win-heading win-heading-normal heading-font normal-heading">Стоимость<br>трёхстворчатого<br>окна</p>
+								<p class="win-mes">Размер 1880 х 1410 мм</p>
+							</div>
+							
+							<div class="win-bg-prof-box win-prlx-3-box">
+								<div class="win-prlx-bg-clip">
+									<img src="img/win-bg.jpg" style="left: -370px;" data-prlxstart="-370" class="win-prlx-bg"/>
+								</div>
+								<img src="img/okno-3-trn.png" />
+							</div>
+							
+							<div class="price-box common-price-box">
+								<p class="comm-price heading-font medium-heading">
+									<span class="cross-out-clip"><img src="img/cross-out.png" /></span>
+									14 500 <span class="replace-rub-sym">руб.</span>
+								</p>
+							</div>
+							<div class="price-box prosto-price-box">
+								<p class="prosto-price heading-font medium-heading">
+									<span id="prosto_our_price_8500" data-count-from="14500" data-count-till="8700" class="prosto-our-price green-color">8 700</span> <span class="replace-rub-sym green-color">руб.</span>
+								</p>
+							</div>
+							<p class="win-price-block-economy">Экономия <span class="green-color">5 800 <span class="replace-rub-sym">руб.</span></span></p>
+							<a class="round-border round-border-green win-price-order-btn" href="zakaz.php.html">заказать с выгодой</a>
+						</div>
+					
+					
+					
+					
+					
+						<div id="win_bal" class="win-box win-box-prlx"><!-- float: right -->
+							<div class="win-heading-box">
+								<p class="win-heading win-heading-normal heading-font normal-heading">Стоимость<br>балконного<br>блока</p>
+								<p class="win-mes">Размер 2210 х 2200 мм</p>
+							</div>
+							
+							
+							<div class="win-bg-prof-box win-prlx-bal-box">
+								<div class="win-prlx-bg-clip">
+									<img src="img/win-bg.jpg" style="left: -670px;" data-prlxstart="-670" class="win-prlx-bg"/>
+								</div>
+								<img src="img/okno-bal-trn.png" />
+							</div>
+							
+							
+							<div class="price-box common-price-box">
+								<p class="comm-price heading-font medium-heading">
+									<span class="cross-out-clip"><img src="img/cross-out.png" /></span>
+									18 000 <span class="replace-rub-sym">руб.</span>
+								</p>
+							</div>
+							<div class="price-box prosto-price-box">
+								<p class="prosto-price heading-font medium-heading">
+									<span id="prosto_our_price_11500" data-count-from="18000" data-count-till="11000" class="prosto-our-price green-color">11 000</span> <span class="replace-rub-sym green-color">руб.</span>
+								</p>
+							</div>
+							<p class="win-price-block-economy">Экономия <span class="green-color">7 000 <span class="replace-rub-sym">руб.</span></span></p>
+							<a class="round-border round-border-green win-price-order-btn" href="zakaz.php.html">заказать с выгодой</a>
+						</div>
+						
+						
+						
+						
+					</div>
+				</div>
+				<!-- /наши цены на пластиковые окна PRLX-->
+				<script>preparePriceBlocksAimation()</script>
+			</div><!-- /обёртка ноды -->
+			
+						<div id="div-vverh">
+				<a href="price.php.html#" title="Наверх"><img src="img/arrow-up.png"></a>
+			</div>
+			<a href="calc/index.html" id="calc_icon_link" class="transition-05-ease-out"><img src="img/calc_icon.png"></a>
+			<a href="price.php.html#" id="widgt_link" class="transition-05-ease-out jumping-btn">
+				<span id="widgt_link_img_box">
+					<img src="img/okp_phone.png" class="transition-03-ease-out widg-link-active-img"/>
+					<img src="img/okp_phone_text.png" class="transition-03-ease-out"/>
+				</span>
+			</a>
+			
+			<div id="footer" style="margin-top: 40px;">
+				<div class="full-width">
+					<div class="width-control">
+					
+						<div class="footer-block">
+							<img src="img/prosto-logo.png" />
+							<p id="footer_copyright">
+								© 1996-2018 "Окна Просто". Все права защищены.<br>
+								г. Одинцово, ул. Ново-Спортивная, д.4 стр. 1<br>
+								<!-- <span class="footer-phone">+7(495)332 4216</span><br> -->
+								С 09:00 до 20:00 без выходных
+							</p>
+						</div>
+						
+						<div class="footer-block">
+							<ul id="footer_menu" class="menu menu-main">
+								<li><a href="deshevle/index.html" title="Почему у нас действительно дешевле, чем у конкурентов?">Почему у нас дешевле?</a></li>
+								<li><a href="prod.php.html" title="Собственное производство">Производство</a></li>
+								<li><a href="price.php.html" title="Цены">Цены</a></li>
+								<li><a href="calc/index.html" title="Онлайн калькулятор окон">Калькулятор окон</a></li>
+								<li><a href="okna.php.html" title="Качество наших окон">Качество окон</a></li>
+								<li><a href="contact.php.html" title="Контакты">Контакты</a></li>
+							</ul>
+						</div>
+						
+						<div id="lampa_ilicha" >
+							<div id="lampa_text">
+								<img src="img/green-right-arrow-sm-vert.png" id="podval_lampa_arrow"/>
+								<p>Заказать окна у нас - хорошая идея!</p>
+							</div>
+							<img src="img/podval-lampa-off.png" class="podval-lampa" id="podval_lampa_off"/>
+							<img src="img/podval-lampa-on.png" class="podval-lampa" id="podval_lampa_on" />
+						</div>
+						
+						<div class="footer-block" id="footer_autors">
+							<p>Продвижение сайта<br>
+								<a href="http://seorazum.ru" class="green-color">СЕОРАЗУМ</a>
+							</p>
+							<p>Дизайн сайта<br>
+								<a href="http://strangebrain.ru" class="green-color">StrangeBrain</a>
+							</p>
+							<p><a href="core/crm/index.html" class="green-color">Кабинет</a></p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- Yandex.Metrika counter -->
+			<script type="text/javascript">
+			    (function (d, w, c) {
+			        (w[c] = w[c] || []).push(function() {
+			            try {
+			                w.yaCounter33657694 = new Ya.Metrika({
+			                    id:33657694,
+			                    clickmap:true,
+			                    trackLinks:true,
+			                    accurateTrackBounce:true,
+			                    webvisor:true
+			                });
+			            } catch(e) { }
+			        });
+			
+			        var n = d.getElementsByTagName("script")[0],
+			            s = d.createElement("script"),
+			            f = function () { n.parentNode.insertBefore(s, n); };
+			        s.type = "text/javascript";
+			        s.async = true;
+			        s.src = "https://mc.yandex.ru/metrika/watch.js";
+			
+			        if (w.opera == "[object Opera]") {
+			            d.addEventListener("DOMContentLoaded", f, false);
+			        } else { f(); }
+			    })(document, window, "yandex_metrika_callbacks");
+			</script>
+			<noscript><div><img src="https://mc.yandex.ru/watch/33657694" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+			<!-- /Yandex.Metrika counter -->
+			<script type="text/javascript" src="http://callkeeper.ru/modules/widget/db/?callkeeper_code=210a4821cd4db38cbf35589690b10b1d" charset="UTF-8"></script>
+			<script type="text/javascript" src="http://callkeeper.ru/modules/widget/callkeeper.js" charset="UTF-8"></script>
+			
+		</div> <!-- /внешний контейнер ширины -->
+	</body>
+</html>
